@@ -1,0 +1,39 @@
+.docker {
+  display: flex;
+  position: absolute;
+  padding-top: 10px;
+  padding-bottom: 3px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background: white; 
+
+  &__item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
+
+
+    .iconfont {
+      width: 22px;
+      padding: 3px;
+    }
+  }
+
+  .active {
+    color: red;
+
+    .iconfont {
+      border-radius: 14px;
+      background-color: rgb(255, 0, 0);
+      filter: brightness(2.5)
+    }
+  }
+}
