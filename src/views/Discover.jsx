@@ -1,6 +1,8 @@
-
+import Header from "../components/header/Header"
 export default function Discover() {
   return (
-    <div>发现</div>
+    <div style={{height: '1000px',background: '#f0f0f0'}}>
+      <Header />
+    </div>
   )
 }
