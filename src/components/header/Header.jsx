@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getBanner } from "../../api/getDiscovery";
 import "./Header.scss";
 import { useQuery } from "react-query";
@@ -12,12 +12,19 @@ export default function Header() {
       setCurrentIndex(prevIndex =>
         prevIndex === data.banners.length - 1 ? 0 : prevIndex + 1
       );
-    }, 5000); // 自动滑动每3秒钟一次
+    }, 5000); // 自动滑动每5秒钟一次
 
     return () => clearInterval(interval);
   }, [data?.banners?.length]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading || !data) return (
+    <div style={{padding:'40px 30px'}}>
+      <div style={{width: '80%', height: '12px', left:'5px', background: 'rgb(203 203 203)', borderRadius: '8px'}}></div>
+      <div style={{width: '50%', height: '12px', left:'5px', marginTop: '40px', background: 'rgb(203 203 203)', borderRadius: '8px'}}></div>
+      <div style={{width: '80%', height: '12px', left:'5px', marginTop: '40px', background: 'rgb(203 203 203)', borderRadius: '8px'}}></div>
+    </div>
+  )
+
   if (error) return <div>Error: {error.message}</div>;
 
   return (

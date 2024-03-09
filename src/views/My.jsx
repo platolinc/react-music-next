@@ -1,7 +1,7 @@
 
 export default function My() {
   return (
-    <div>我的</div>
+    <div style={{height: '1000px',background: '#f0f0f0'}}>我的</div>
   )
 }
 

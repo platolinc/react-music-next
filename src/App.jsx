@@ -14,7 +14,6 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <HashRouter>
         <div>
-          <Docker />
           <Routes>
             <Route path="/" element={<Navigate to="/discover" />} />
             <Route exact path="/discover" element={<Discover />} />
@@ -23,6 +22,7 @@ function App() {
             <Route exact path="/follow" element={<Follow />} />
             <Route exact path="/community" element={<Community />} />
           </Routes>
+          <Docker />
         </div>
       </HashRouter>
     </QueryClientProvider>

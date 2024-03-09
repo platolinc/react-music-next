@@ -1,0 +1,29 @@
+.middle {
+  display: flex;
+  width: 100%;
+  height: 65px;
+  overflow-x: auto;
+  margin-bottom: 20px;
+
+  &__content {
+    margin: 0 17px;
+    text-align: center;
+
+    &__img {
+      width: 40px;
+    }
+
+    &__title {
+      margin: 0;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+  }
+}
+
+.middle::-webkit-scrollbar {
+  height: 1px;
+  width: 100%;
+}
+
+

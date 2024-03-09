@@ -14,3 +14,13 @@ export async function getIcon() {
   const banner = await instance.get('/homepage/block/page')
   return banner.data
 }
+
+export async function getAlbum() {
+  const banner = await instance.get('/personalized?limit=7')
+  return banner.data
+}
+
+export async function getSongs() {
+  const banner = await instance.get('/top/song?type=7')
+  return banner.data
+}
