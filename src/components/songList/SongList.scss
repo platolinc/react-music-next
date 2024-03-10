@@ -1,0 +1,26 @@
+.songlist {
+  background: white;
+  margin: 0;
+  border-top: 1px;
+  border-color: white;
+
+  &__content {
+    overflow: hidden;
+    
+    .name{
+      margin: 0;
+      font-size: 18px;
+      font-weight: 500;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .desc {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      color: rgb(111, 111, 111);
+    }
+  }
+}

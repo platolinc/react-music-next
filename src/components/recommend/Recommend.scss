@@ -12,6 +12,11 @@
   overflow-x: auto;
   padding: 0 13px;
 
+  .album-link {
+    text-decoration: none; /* 移除下划线 */
+    color: inherit; /* 继承父元素的文字颜色 */
+  }
+
   &__content {
     margin: 0 5px;
     text-align: center;
@@ -25,6 +30,7 @@
     &__title {
       margin: 0;
       font-size: 13px;
+      text-align: start;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;

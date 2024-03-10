@@ -24,3 +24,8 @@ export async function getSongs() {
   const banner = await instance.get('/top/song?type=7')
   return banner.data
 }
+
+export async function getPlaylist(id) {
+  const banner = await instance.get(`/playlist/track/all?id=${id}`)
+  return banner.data
+}
