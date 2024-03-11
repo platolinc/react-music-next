@@ -6,26 +6,26 @@ const instance = axios.create({
 })
 
 export async function getBanner() {
-  const banner = await instance.get('/banner')
-  return banner.data
+  const res = await instance.get('/banner')
+  return res.data
 }
 
 export async function getIcon() {
-  const banner = await instance.get('/homepage/block/page')
-  return banner.data
+  const res = await instance.get('/homepage/block/page')
+  return res.data
 }
 
 export async function getAlbum() {
-  const banner = await instance.get('/personalized?limit=7')
-  return banner.data
+  const res = await instance.get('/personalized?limit=7')
+  return res.data
 }
 
 export async function getSongs() {
-  const banner = await instance.get('/top/song?type=7')
-  return banner.data
+  const res = await instance.get('/top/song?type=7')
+  return res.data
 }
 
 export async function getPlaylist(id) {
-  const banner = await instance.get(`/playlist/track/all?id=${id}`)
-  return banner.data
+  const res = await instance.get(`/playlist/track/all?id=${id}`)
+  return res.data
 }

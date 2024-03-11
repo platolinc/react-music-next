@@ -18,9 +18,9 @@ export default function Header() {
   }, [data?.banners?.length]);
 
   if (isLoading || !data) return (
-    <div style={{padding:'40px 30px'}}>
-      <div style={{width: '80%', height: '12px', left:'5px', background: 'rgb(203 203 203)', borderRadius: '8px'}}></div>
-      <div style={{width: '50%', height: '12px', left:'5px', marginTop: '40px', background: 'rgb(203 203 203)', borderRadius: '8px'}}></div>
+    <div style={{padding:'50px 15px'}}>
+      <div style={{width: '350px', height: '130px', marginLeft:'4px', background: 'rgb(203 203 203)', borderRadius: '8px'}}></div>
+      <div style={{width: '50%', height: '12px', left:'5px', marginTop: '45px', background: 'rgb(203 203 203)', borderRadius: '8px'}}></div>
       <div style={{width: '80%', height: '12px', left:'5px', marginTop: '40px', background: 'rgb(203 203 203)', borderRadius: '8px'}}></div>
     </div>
   )
