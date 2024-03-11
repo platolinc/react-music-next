@@ -1,15 +1,33 @@
 .songlist {
   background: white;
   margin: 0;
-  border-top: 1px;
-  border-color: white;
+  padding: 0 0 20px 0;
+  list-style: none;
+
+  li {
+    position: relative; /* 使伪元素相对于列表项定位 */
+    counter-increment: item; /* 自增计数器 */
+    padding-left: 40px; /* 添加左边距 */
+    padding-top: 18px;
+  }
+  
+  li::before {
+    content: counter(item); /* 使用计数器来设置项目符号内容 */
+    position: absolute; /* 绝对定位 */
+    left: 13px; /* 相对于列表项的左边 */
+    top: 29px; /* 相对于列表项的顶部 */
+    color: rgb(103, 103, 103); /* 设置数字颜色 */
+    font-weight: 500; /* 设置数字粗体 */
+    font-size: 17px; /* 设置数字大小 */
+  }
 
   &__content {
     overflow: hidden;
     
     .name{
       margin: 0;
-      font-size: 18px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 16px;
       font-weight: 500;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -20,7 +38,9 @@
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      color: rgb(111, 111, 111);
+      margin: 0;
+      font-size: 13px;
+      color: rgb(100, 100, 100);
     }
   }
 }

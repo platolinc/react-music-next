@@ -4,14 +4,14 @@ export default function SongList({songs = []}) {
     <li key={index}>
       <div className="songlist__content">
         <h2 className="name">{i.name}</h2>
-        <p className="desc"> {i.ar[0].name}-{i.al.name}</p>
+        <p className="desc"> {i.ar[0].name} - {i.al.name}</p>
       </div>
     </li>
   ))
   
   return (
-    <ul className="songlist">
+    <ol className="songlist">
       {songslist}
-    </ul>
+    </ol>
   )
 }

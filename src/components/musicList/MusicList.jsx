@@ -1,15 +1,32 @@
 import SongList from "../songList/SongList"
+import { useNavigate } from 'react-router-dom';
 import "./MusicList.scss"
 
 export default function MusicList({songs, title, pic, trackCount}) {
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    // 回退到上一个路由
+    navigate(-1);
+  };
+
+  window.addEventListener('scroll', function() {
+    var header = document.querySelector('.header');
+    var scrollPosition = window.scrollY;
   
+    if (scrollPosition > 210) {
+      header.style.backgroundColor = 'rgba(225, 117, 117, 0.85)'; // 当滚动位置大于0时，改变背景颜色为白色
+    } else {
+      header.style.backgroundColor = 'transparent'; // 否则背景透明
+    }
+  });
+
   return (
     <div className="musiclist">
       <div className="background">
         <img src={pic} />
       </div>
       <div className="header">
-        <div className="back">
+        <div className="back" onClick={handleGoBack}>
           {'<'} 
         </div>
         <h1 className="title">歌单</h1>

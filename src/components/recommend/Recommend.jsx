@@ -50,7 +50,7 @@ export default function Recommend() {
       <div className="songs-wrapper">
         <div className="songs">
           一人一首华语经典 {">"}
-          {songs.map(
+          {songs?.map(
             (i, index) => (
               <div className="songs__content" key={index}>
                 <img className="songs__content__img" src={i.album.blurPicUrl} />

@@ -19,6 +19,8 @@
   }
 
   .header{
+    position: fixed;
+    z-index: 11;
     display: flex;
     align-items: center;
     height: 50px;
@@ -46,6 +48,7 @@
     height: 210px;
     display: block;
     margin: 0;
+    padding-top: 50px;
 
     .flex1 {
       display: flex;
@@ -100,8 +103,8 @@
       height: 55px;
       padding: 0 13px;
       background-image: linear-gradient(to top, white, rgba(255, 255, 255, 0.3));
-      border-top-right-radius: 13px;
-      border-top-left-radius: 13px;
+      border-top-right-radius: 14px;
+      border-top-left-radius: 14px;
 
       .playall {
         width: 22px;
