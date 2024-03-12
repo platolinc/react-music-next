@@ -13,7 +13,7 @@ export async function processSongs(songs) {
     const Url = await instance.get(`/song/url/v1?id=${song.id}&level=jymaster`)
     return {
       ...song,
-      aaaUrl: Url.data.data[0].url
+      aaaUrl: Url.data.data?.[0].url
     }
   }))
   return processedSongs

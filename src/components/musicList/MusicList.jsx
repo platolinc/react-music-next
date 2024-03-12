@@ -1,5 +1,7 @@
 import SongList from "../songList/SongList"
 import { useNavigate } from 'react-router-dom';
+import { useVideoStore } from '/src/store/video.js'
+import { useEffect } from "react";
 import "./MusicList.scss"
 
 export default function MusicList({songs, title, pic, trackCount}) {
@@ -9,16 +11,30 @@ export default function MusicList({songs, title, pic, trackCount}) {
     navigate(-1);
   };
 
-  window.addEventListener('scroll', function() {
-    var header = document.querySelector('.header');
-    var scrollPosition = window.scrollY;
+  useEffect(() => {
+    window.addEventListener('scroll', function() {
+      var header = document.querySelector('.header');
+      var scrollPosition = window.scrollY;
+    
+      if (header) {
+        if (scrollPosition > 210) {
+          header.style.backgroundColor = 'rgba(225, 117, 117, 0.85)'; // 当滚动位置大于0时，改变背景颜色为白色
+        } else {
+          header.style.backgroundColor = 'transparent'; // 否则背景透明
+        }
+      }
+    });
+  })
   
-    if (scrollPosition > 210) {
-      header.style.backgroundColor = 'rgba(225, 117, 117, 0.85)'; // 当滚动位置大于0时，改变背景颜色为白色
-    } else {
-      header.style.backgroundColor = 'transparent'; // 否则背景透明
-    }
-  });
+
+  const {selectPlay,randomPlay, playlist} = useVideoStore()
+  function selectItem (index) {
+    selectPlay(songs, index)
+  }
+  function random () {
+    randomPlay(songs)
+    console.log('success : ', playlist)
+  }
 
   return (
     <div className="musiclist">
@@ -57,12 +73,15 @@ export default function MusicList({songs, title, pic, trackCount}) {
       
       <div className="bottom">
         <div className="bottom__flex">
-          <img className="playall" src="/src/components/musicList/开始.png"/>
-          <div className="title">随机播放({trackCount})</div>
+          <div className="playall" onClick={random}>
+            <img className="playicon" src="/src/components/musicList/开始.png"/>
+            <div className="title">随机播放({trackCount})</div>
+          </div>
           <img className="list" src="/src/assets/fonts/菜单.png" />
         </div>
         <SongList 
-          songs={songs}
+          songs = {songs}
+          select = {selectItem}
         />
       </div>
       

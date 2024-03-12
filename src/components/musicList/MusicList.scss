@@ -106,16 +106,22 @@
       border-top-right-radius: 14px;
       border-top-left-radius: 14px;
 
-      .playall {
-        width: 22px;
-        height: 22px;
-      }
-
-      .title {
+      .playall{
         flex: 1;
-        font-weight: 500;
+        display: flex;
+        align-items: center;
+
+        .playicon {
+          width: 22px;
+          height: 22px;
+        }
+
+        .title {
+          font-weight: 500;
+        }
       }
 
+    
       .list {
         width: 22px;
         height: 22px;

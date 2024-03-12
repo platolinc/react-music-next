@@ -6,6 +6,7 @@ import My from '/src/views/My';
 import Follow from '/src/views/Follow';
 import Community from '/src/views/Community';
 import Docker from "./components/docker/Docker.jsx"
+import Player from '/src/components/player/Player.jsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="/community" element={<Community />} />
           </Routes>
           <Docker />
+          <Player />
         </div>
       </HashRouter>
     </QueryClientProvider>
