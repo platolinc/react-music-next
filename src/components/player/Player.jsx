@@ -23,6 +23,51 @@ export default function Player() {
   function pause() {
     store.setPlayingState(false)
   }
+  function prev() {
+    const list = store.playlist
+
+    if (!list.length) {
+      return
+    }
+
+    if (list.length === 1) {
+      loop()
+    } else {
+      let index = store.currentIndex - 1
+      if (index === -1) {
+        index = list.length - 1
+      }
+      store.setCurrentIndex(index)
+      if (!store.playing) {
+        store.playing = true
+      }
+    }
+  }
+  function next() {
+    const list = store.playlist
+
+    if (!list.length) {
+      return
+    }
+
+    if (list.length === 1) {
+      loop()
+    } else {
+      let index = store.currentIndex + 1
+      if (index === list.length) {
+        index = 0
+      }
+      store.setCurrentIndex(index)
+      if (!store.playing) {
+        store.playing = true
+      }
+    }
+  }
+  function loop () {
+    const audioEl = audioRef.current
+    audioEl.currentTime = 0
+    audioEl.play()
+  }
 
   useEffect(() => {
     if (!currentSong.id || !currentSong.aaaUrl) {
@@ -55,19 +100,19 @@ export default function Player() {
           </div>
           <div className="bottom">
             <div className="bottom__mode">
-              <img src="/src/components/player/列表循环.png" className="w-5 h-5"/>
+              <img src="/src/components/player/列表循环.png" />
             </div>
             <div className="bottom__before">
-              <img src="/src/components/player/下一首.png" className="w-6 h-6 -rotate-180" />
+              <img src="/src/components/player/下一首.png" onClick={prev}/>
             </div>
             <div className="bottom__stop" onClick={togglePlay}>
               <img src={playIcon} className="w-14 h-14" />
             </div>
             <div className="bottom__next">
-              <img src="/src/components/player/下一首.png" className="w-6 h-6" />
+              <img src="/src/components/player/下一首.png" onClick={next}/>
             </div>
             <div className="bottom__favour">
-              <img src="/src/components/player/不喜欢.png" className="w-7 h-7"/>
+              <img src="/src/components/player/不喜欢.png" />
             </div>
           </div>
         </div>
