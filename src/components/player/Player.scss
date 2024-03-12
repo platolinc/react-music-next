@@ -63,5 +63,48 @@
         width: 33px;
       }
     }
+
+    .bottom {
+      display: flex;
+      text-align: center;
+      align-items: center;                                                                                                                                                 ;
+
+      &__mode{
+        flex: 1;
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
+      &__before{
+        flex: 1;
+        img {
+          rotate: 180deg;
+          width: 26px;
+          height: 26px;
+        }
+      }
+      &__stop{
+        flex: 1;
+        img {
+          width: 52px;
+          height: 52px;
+        }
+      }
+      &__next{
+        flex: 1;
+        img {
+          width: 26px;
+          height: 26px;
+        }
+      }
+      &__favour{
+        flex: 1;
+        img {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    }
   }
 }

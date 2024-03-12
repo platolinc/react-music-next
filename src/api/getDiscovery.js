@@ -26,6 +26,6 @@ export async function getSongs() {
 }
 
 export async function getPlaylist(id) {
-  const res = await instance.get(`/playlist/track/all?id=${id}`)
+  const res = await instance.get(`/playlist/track/all?id=${id}&limit=10`)
   return res.data
 }
