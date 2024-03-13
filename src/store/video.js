@@ -85,18 +85,18 @@ export const useVideoStore = create((set) => ({
       currentIndex: 0
     })),
 
-  // changeMode: (mode) =>
-  //   set((state) => {
-  //     const currentId = state.playlist[state.currentIndex].id
-  //     let playlist = state.sequenceList
-  //     if (mode === PLAY_MODE.random) {
-  //       playlist = shuffle(state.sequenceList)
-  //     }
-  //     const index = playlist.findIndex((song) => song.id === currentId)
-  //     return {
-  //       playlist,
-  //       currentIndex: index,
-  //       playMode: mode
-  //     }
-  //   })
+  changeMode: (mode) =>
+    set((state) => {
+      const currentId = state.playlist[state.currentIndex].id
+      let playlist = state.sequenceList
+      if (mode === PLAY_MODE.random) {
+        playlist = shuffle(state.sequenceList)
+      }
+      const index = playlist.findIndex((song) => song.id === currentId)
+      return {
+        playlist,
+        currentIndex: index,
+        playMode: mode
+      }
+    })
 }))

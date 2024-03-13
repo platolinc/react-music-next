@@ -1,8 +1,11 @@
 import { useRef, useEffect, useMemo, useState } from 'react';
 import { useVideoStore } from '/src/store/video.js'
+import useMode from "./use-mode"
 import "./Player.scss"
 
 export default function Player() {
+
+  const { modeIcon, changeMode } = useMode();
   const audioRef = useRef(null);
   const [songReady, setSongReady] = useState(false);
   const store = useVideoStore()
@@ -17,7 +20,7 @@ export default function Player() {
 
   const disableCls = useMemo(() => {
     return songReady ? '' : 'disable'
-  })
+  }, [songReady])
 
   function goBack() {
     store.setFullScreen(false)
@@ -126,7 +129,7 @@ export default function Player() {
           </div>
           <div className="bottom">
             <div className="bottom__mode">
-              <img src="/src/components/player/列表循环.png" />
+              <img src={modeIcon} onClick={changeMode} />
             </div>
             <div className="bottom__before">
               <img src="/src/components/player/下一首.png" onClick={prev} className={disableCls}/>
