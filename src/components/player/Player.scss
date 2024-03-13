@@ -63,52 +63,83 @@
         width: 33px;
       }
     }
-
     .bottom {
-      display: flex;
-      text-align: center;
-      align-items: center;      
-      
-      .disable {
-        filter: brightness(0.5) hue-rotate(90deg);
-      }
+      position: absolute;
+      bottom: 25px;
+      width: 100%;
 
-      &__mode{
-        flex: 1;
-        img {
-          width: 25px;
-          height: 25px;
+      .progress-wrapper {
+        display: flex;
+        align-items: center;
+        width: 90%;
+        margin: 0px auto;
+        padding: 10px 0;
+        .time {
+          color: #fff;
+          font-size: 12px;
+          flex: 0 0 40px;
+          line-height: 30px;
+          width: 40px;
+          &.time-l {
+            text-align: left;
+          }
+          &.time-r {
+            text-align: right;
+          }
+        }
+        .progress-bar-wrapper {
+          flex: 1;
         }
       }
-      &__before{
-        flex: 1;
-        img {
-          rotate: 180deg;
-          width: 26px;
-          height: 26px;
+  
+      .operate {
+        display: flex;
+        margin: 1px 40px;
+        text-align: center;
+        align-items: center;      
+   
+        .disable {
+          filter: brightness(0.5) hue-rotate(90deg);
         }
-      }
-      &__stop{
-        flex: 1;
-        img {
-          width: 52px;
-          height: 52px;
+  
+        &__mode{
+          flex: 1;
+          img {
+            width: 25px;
+            height: 25px;
+          }
         }
-      }
-      &__next{
-        flex: 1;
-        img {
-          width: 26px;
-          height: 26px;
+        &__before{
+          flex: 1;
+          img {
+            rotate: 180deg;
+            width: 26px;
+            height: 26px;
+          }
         }
-      }
-      &__favour{
-        flex: 1;
-        img {
-          width: 36px;
-          height: 36px;
+        &__stop{
+          flex: 1;
+          img {
+            width: 52px;
+            height: 52px;
+          }
+        }
+        &__next{
+          flex: 1;
+          img {
+            width: 26px;
+            height: 26px;
+          }
+        }
+        &__favour{
+          flex: 1;
+          img {
+            width: 36px;
+            height: 36px;
+          }
         }
       }
     }
+    
   }
 }
