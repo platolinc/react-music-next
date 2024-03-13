@@ -67,7 +67,11 @@
     .bottom {
       display: flex;
       text-align: center;
-      align-items: center;                                                                                                                                                 ;
+      align-items: center;      
+      
+      .disable {
+        filter: brightness(0.5) hue-rotate(90deg);
+      }
 
       &__mode{
         flex: 1;

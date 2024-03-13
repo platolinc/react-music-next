@@ -1,9 +1,10 @@
-import { useRef, useEffect, useMemo } from 'react';
+import { useRef, useEffect, useMemo, useState } from 'react';
 import { useVideoStore } from '/src/store/video.js'
 import "./Player.scss"
 
 export default function Player() {
   const audioRef = useRef(null);
+  const [songReady, setSongReady] = useState(false);
   const store = useVideoStore()
   
   const currentSong = useMemo(() => {
@@ -14,10 +15,17 @@ export default function Player() {
     return store.playing?  '/src/components/player/暂停.png' : '/src/components/player/开始.png';
   }, [store.playing])
 
+  const disableCls = useMemo(() => {
+    return songReady ? '' : 'disable'
+  })
+
   function goBack() {
     store.setFullScreen(false)
   }
   function togglePlay() {
+    if (!songReady) {
+      return
+    }
     store.setPlayingState(!store.playing)
   }
   function pause() {
@@ -26,7 +34,7 @@ export default function Player() {
   function prev() {
     const list = store.playlist
 
-    if (!list.length) {
+    if (!songReady || !list.length) {
       return
     }
 
@@ -39,14 +47,14 @@ export default function Player() {
       }
       store.setCurrentIndex(index)
       if (!store.playing) {
-        store.playing = true
+        store.setPlayingState(true)
       }
     }
   }
   function next() {
     const list = store.playlist
 
-    if (!list.length) {
+    if (!songReady || !list.length) {
       return
     }
 
@@ -59,7 +67,7 @@ export default function Player() {
       }
       store.setCurrentIndex(index)
       if (!store.playing) {
-        store.playing = true
+        store.setPlayingState(true)
       }
     }
   }
@@ -68,17 +76,35 @@ export default function Player() {
     audioEl.currentTime = 0
     audioEl.play()
   }
+  function ready () {
+    if (songReady) {
+      return
+    }
+    setSongReady(true)
+  }
+  function error () {
+    setSongReady(true)
+  }
 
   useEffect(() => {
     if (!currentSong.id || !currentSong.aaaUrl) {
       return
     }
+    setSongReady(false)
     const audioEl = audioRef.current
     audioEl.src = currentSong.aaaUrl
     console.log(currentSong.aaaUrl)
     audioEl.play()
+  }, [currentSong]);
+
+  useEffect(() => {
+    if (!songReady) {
+      return
+    }
+    const audioEl = audioRef.current
     store.playing ? audioEl.play() : audioEl.pause()
-  }, [currentSong, store.playing]);
+  }, [store.playing, songReady]);
+
 
   return (
     <div className="player">
@@ -103,13 +129,13 @@ export default function Player() {
               <img src="/src/components/player/列表循环.png" />
             </div>
             <div className="bottom__before">
-              <img src="/src/components/player/下一首.png" onClick={prev}/>
+              <img src="/src/components/player/下一首.png" onClick={prev} className={disableCls}/>
             </div>
             <div className="bottom__stop" onClick={togglePlay}>
-              <img src={playIcon} className="w-14 h-14" />
+              <img src={playIcon} className={disableCls} />
             </div>
             <div className="bottom__next">
-              <img src="/src/components/player/下一首.png" onClick={next}/>
+              <img src="/src/components/player/下一首.png" onClick={next} className={disableCls}/>
             </div>
             <div className="bottom__favour">
               <img src="/src/components/player/不喜欢.png" />
@@ -120,6 +146,8 @@ export default function Player() {
       <audio
         ref = {audioRef}
         onPause = {pause}
+        onCanPlay={ready}
+        onError={error}
       ></audio>
     </div>
   )
