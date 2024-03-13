@@ -3,16 +3,18 @@ import { useVideoStore } from '/src/store/video.js'
 import useMode from "./use-mode"
 import { formatTime } from '/src/assets/js/util.js'
 import ProgressBar from './ProgressBar';
+import { PLAY_MODE } from '/src/assets/js/constant'
 import "./Player.scss"
 
 export default function Player() {
 
-  const { modeIcon, changeMode } = useMode();
   const audioRef = useRef(null);
   const [songReady, setSongReady] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const store = useVideoStore()
+  const [progressChanging, setProgressChanging] = useState(false);
   
+  // zustand
+  const store = useVideoStore() 
   const currentSong = useMemo(() => {
     return store.playlist[store.currentIndex] || {};
   }, [store.playlist, store.currentIndex])
@@ -28,6 +30,8 @@ export default function Player() {
   const progress = useMemo(() => {
     return currentTime / (currentSong.dt/1000)
   }, [currentTime, currentSong])
+
+  const { modeIcon, changeMode } = useMode();
 
   function goBack() {
     store.setFullScreen(false)
@@ -85,6 +89,7 @@ export default function Player() {
     const audioEl = audioRef.current
     audioEl.currentTime = 0
     audioEl.play()
+    store.setPlayingState(true)
   }
   function ready () {
     if (songReady) {
@@ -96,7 +101,31 @@ export default function Player() {
     setSongReady(true)
   }
   function updataTime (e) {
-    setCurrentTime(e.target.currentTime)
+    if(!progressChanging) {
+      setCurrentTime(e.target.currentTime)
+    }
+  }
+  function handleProgressChanging (progress) {
+    setProgressChanging(true)
+    setCurrentTime(currentSong.dt / 1000 * progress)
+  }
+  
+  function handleProgressChanged (progress) {
+    setProgressChanging(false)
+    setCurrentTime(currentSong.dt / 1000 * progress)
+    audioRef.current.currentTime = currentSong.dt / 1000 * progress
+    if (!store.playing) {
+      store.setPlayingState(true)
+    }
+  }
+
+  function end () {
+    setCurrentTime(0)
+    if (store.playMode === PLAY_MODE.loop) {
+      loop()
+    } else {
+      next()
+    }
   }
 
   useEffect(() => {
@@ -144,6 +173,8 @@ export default function Player() {
               <div className="progress-bar-wrapper">
                 <ProgressBar
                   progress={progress}
+                  onProgressChanging={handleProgressChanging}
+                  onProgressChanged={handleProgressChanged}
                 ></ProgressBar>
               </div>
               <span className="time time-r">{formatTime(currentSong.dt/1000)}</span>
@@ -174,6 +205,7 @@ export default function Player() {
         onCanPlay={ready}
         onError={error}
         onTimeUpdate={updataTime}
+        onEnded={end}
       ></audio>
     </div>
   )
