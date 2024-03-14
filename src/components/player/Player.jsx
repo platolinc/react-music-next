@@ -1,6 +1,7 @@
 import { useRef, useEffect, useMemo, useState } from 'react';
 import { useVideoStore } from '/src/store/video.js'
 import useMode from "./use-mode"
+import useCd from './use-cd';
 import { formatTime } from '/src/assets/js/util.js'
 import ProgressBar from './ProgressBar';
 import { PLAY_MODE } from '/src/assets/js/constant'
@@ -19,6 +20,11 @@ export default function Player() {
     return store.playlist[store.currentIndex] || {};
   }, [store.playlist, store.currentIndex])
 
+  // hooks
+  const { modeIcon, changeMode } = useMode();
+  const { cdCls, cdRef, cdImageRef } = useCd();
+
+  // 计算
   const playIcon = useMemo(() => {
     return store.playing?  '/src/components/player/暂停.png' : '/src/components/player/开始.png';
   }, [store.playing])
@@ -31,7 +37,7 @@ export default function Player() {
     return currentTime / (currentSong.dt/1000)
   }, [currentTime, currentSong])
 
-  const { modeIcon, changeMode } = useMode();
+  
 
   function goBack() {
     store.setFullScreen(false)
@@ -166,6 +172,15 @@ export default function Player() {
             <h1 className="title">{currentSong.name}</h1>
             <h2 className="subtitle">{currentSong?.ar?.[0]?.name}</h2>
             <img src="/src/components/player/分享.png" className="share" />
+          </div>
+          <div className="middle">
+            <div className="middle-l">
+              <div className="cd-wrapper">
+                <div ref={cdRef} className="cd">
+                  <img ref={cdImageRef} className={cdCls} src={currentSong.al.picUrl} />
+                </div>
+              </div>
+            </div>
           </div>
           <div className="bottom">
             <div className="progress-wrapper">
