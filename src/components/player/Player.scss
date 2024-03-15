@@ -82,12 +82,12 @@
       white-space: nowrap;
 
       .middle-l {
-        display: inline-block;
-        vertical-align: top;
+        display: inline;
         position: relative;
         width: 100%;
         height: 0;
         padding-top: 80%;
+        overflow: hidden;
         .cd-wrapper {
           position: absolute;
           left: 10%;
@@ -99,7 +99,6 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            transform: rotate(0);
             img {
               position: absolute;
               left: 0;
@@ -215,5 +214,5 @@
 
 .normal-exit-active {
   transform: translate(0, 100%);
-  transition: all 440ms;
+  transition: all 500ms;
 }

@@ -18,7 +18,8 @@ export default function MusicList({songs, title, pic, trackCount}) {
     
       if (header) {
         if (scrollPosition > 210) {
-          header.style.backgroundColor = 'rgba(225, 117, 117, 0.85)'; // 当滚动位置大于0时，改变背景颜色为白色
+          header.style.backgroundColor = 'rgba(225, 90, 90, 0.9)'; // 当滚动位置大于0时，改变背景颜色为色
+          header.style.borderRadius = '0 0 5px 5px'
         } else {
           header.style.backgroundColor = 'transparent'; // 否则背景透明
         }

@@ -165,7 +165,7 @@ export default function Player() {
           <CSSTransition
             in={store.fullScreen}
             classNames="normal"
-            timeout={600}
+            timeout={500}
             unmountOnExit={true}
           >
             <div className="normal-player">

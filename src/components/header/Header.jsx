@@ -17,6 +17,26 @@ export default function Header() {
     return () => clearInterval(interval);
   }, [data?.banners?.length]);
 
+  useEffect(() => {
+    window.addEventListener('scroll', function() {
+      var top = document.querySelector('.top');
+      var top__center = document.querySelector('.top__center');
+      var headerMask = document.querySelector('.header-mask');
+      var scrollPosition = window.scrollY;
+    
+      if (top && top__center && headerMask) {
+        if (scrollPosition > 2) {
+          top.style.backgroundColor = '#f0f0f0'; 
+          top__center.style.background = 'white'
+          headerMask.style.background = 'transparent'
+        } else {
+          top.style.backgroundColor = 'transparent'; // 否则背景透明
+          headerMask.style.backgroundImage = 'linear-gradient(to right, #ced5ff, #ffe1f3)'
+        }
+      }
+    });
+  })
+
   if (isLoading || !data) return (
     <div style={{padding:'50px 15px'}}>
       <div style={{width: '350px', height: '130px', marginLeft:'4px', background: 'rgb(203 203 203)', borderRadius: '8px'}}></div>
