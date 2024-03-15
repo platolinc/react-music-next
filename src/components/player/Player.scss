@@ -195,6 +195,25 @@
         }
       }
     }
-    
   }
+}
+
+.normal-enter, .normal-appear {
+  opacity: 0;
+  transform: translate(0, 100%);
+}
+
+.normal-enter-active, .normal-appear-active {
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: all 200ms;
+}
+
+.normal-exit {
+  transform: translate(0, 0);
+}
+
+.normal-exit-active {
+  transform: translate(0, 100%);
+  transition: all 440ms;
 }

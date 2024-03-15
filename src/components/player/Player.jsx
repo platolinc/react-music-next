@@ -5,6 +5,8 @@ import useCd from './use-cd';
 import { formatTime } from '/src/assets/js/util.js'
 import ProgressBar from './ProgressBar';
 import { PLAY_MODE } from '/src/assets/js/constant'
+import MiniPlayer from './MiniPlayer'
+import { CSSTransition } from 'react-transition-group';
 import "./Player.scss"
 
 export default function Player() {
@@ -42,10 +44,11 @@ export default function Player() {
   function goBack() {
     store.setFullScreen(false)
   }
-  function togglePlay() {
+  function togglePlay(event) {
     if (!songReady) {
       return
     }
+    event.stopPropagation();
     store.setPlayingState(!store.playing)
   }
   function pause() {
@@ -156,72 +159,84 @@ export default function Player() {
 
 
   return (
-    <div className="player">
-      {store.fullScreen && 
-        <div className="normal-player">
-          <div className="background">
-            <img src={currentSong.al.picUrl}/>
-          </div>
-          <div className="top">
-            <div
-              className="back"
-              onClick={goBack}
-            >
-            <div> {'<'} </div>
-            </div>
-            <h1 className="title">{currentSong.name}</h1>
-            <h2 className="subtitle">{currentSong?.ar?.[0]?.name}</h2>
-            <img src="/src/components/player/分享.png" className="share" />
-          </div>
-          <div className="middle">
-            <div className="middle-l">
-              <div className="cd-wrapper">
-                <div ref={cdRef} className="cd">
-                  <img ref={cdImageRef} className={cdCls} src={currentSong.al.picUrl} />
+    <>
+      { store.playlist?.length > 0 && (
+        <div className="player">
+          <CSSTransition
+            in={store.fullScreen}
+            classNames="normal"
+            timeout={600}
+            unmountOnExit={true}
+          >
+            <div className="normal-player">
+              <div className="background">
+                <img src={currentSong.al.picUrl}/>
+              </div>
+              <div className="top">
+                <div
+                  className="back"
+                  onClick={goBack}
+                >
+                <div> {'<'} </div>
+                </div>
+                <h1 className="title">{currentSong.name}</h1>
+                <h2 className="subtitle">{currentSong?.ar?.[0]?.name}</h2>
+                <img src="/src/components/player/分享.png" className="share" />
+              </div>
+              <div className="middle">
+                <div className="middle-l">
+                  <div className="cd-wrapper">
+                    <div ref={cdRef} className="cd">
+                      <img ref={cdImageRef} className={cdCls} src={currentSong.al.picUrl} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bottom">
+                <div className="progress-wrapper">
+                  <span className="time time-l">{formatTime(currentTime)}</span>
+                  <div className="progress-bar-wrapper">
+                    <ProgressBar
+                      progress={progress}
+                      onProgressChanging={handleProgressChanging}
+                      onProgressChanged={handleProgressChanged}
+                    ></ProgressBar>
+                  </div>
+                  <span className="time time-r">{formatTime(currentSong.dt/1000)}</span>
+                </div>
+                <div className="operate">
+                  <div className="operate__mode">
+                    <img src={modeIcon} onClick={changeMode} />
+                  </div>
+                  <div className="operate__before">
+                    <img src="/src/components/player/下一首.png" onClick={prev} className={disableCls}/>
+                  </div>
+                  <div className="operate__stop" onClick={togglePlay}>
+                    <img src={playIcon} className={disableCls} />
+                  </div>
+                  <div className="operate__next">
+                    <img src="/src/components/player/下一首.png" onClick={next} className={disableCls}/>
+                  </div>
+                  <div className="operate__favour">
+                    <img src="/src/components/player/不喜欢.png" />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="bottom">
-            <div className="progress-wrapper">
-              <span className="time time-l">{formatTime(currentTime)}</span>
-              <div className="progress-bar-wrapper">
-                <ProgressBar
-                  progress={progress}
-                  onProgressChanging={handleProgressChanging}
-                  onProgressChanged={handleProgressChanged}
-                ></ProgressBar>
-              </div>
-              <span className="time time-r">{formatTime(currentSong.dt/1000)}</span>
-            </div>
-            <div className="operate">
-              <div className="operate__mode">
-                <img src={modeIcon} onClick={changeMode} />
-              </div>
-              <div className="operate__before">
-                <img src="/src/components/player/下一首.png" onClick={prev} className={disableCls}/>
-              </div>
-              <div className="operate__stop" onClick={togglePlay}>
-                <img src={playIcon} className={disableCls} />
-              </div>
-              <div className="operate__next">
-                <img src="/src/components/player/下一首.png" onClick={next} className={disableCls}/>
-              </div>
-              <div className="operate__favour">
-                <img src="/src/components/player/不喜欢.png" />
-              </div>
-            </div>
-          </div>
-        </div>
+          </CSSTransition>
+          <MiniPlayer
+            togglePlay={togglePlay}
+          ></MiniPlayer>
+          <audio
+            ref = {audioRef}
+            onPause = {pause}
+            onCanPlay={ready}
+            onError={error}
+            onTimeUpdate={updataTime}
+            onEnded={end}
+          ></audio>
+        </div>)
       }
-      <audio
-        ref = {audioRef}
-        onPause = {pause}
-        onCanPlay={ready}
-        onError={error}
-        onTimeUpdate={updataTime}
-        onEnded={end}
-      ></audio>
-    </div>
+    </>
   )
 }
