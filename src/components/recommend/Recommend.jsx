@@ -7,10 +7,6 @@ import "./Recommend.scss"
 export default function Recommend() {
   const navigate = useNavigate()
   const handleAlbumClick = (album) => {
-    // 获取点击的歌单项对应的 album 对象
-    // 这里可以根据您的具体数据结构来获取相应的 album 对象
-    // 假设 album 参数就是点击的歌单项对应的 album 对象
-
     // 跳转到相应的路由，并将 album 对象作为参数传递给目标组件
     navigate(`/discover/${album.id}`, { state: { album } });
   };

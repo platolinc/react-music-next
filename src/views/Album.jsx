@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { getPlaylist } from '../api/getDiscovery';
 import { processSongs } from '../api/getSong';
-import { useQuery } from "react-query";
 import MusicList from '../components/musicList/MusicList'
 import { useState, useEffect } from 'react';
 
@@ -24,7 +23,7 @@ export default function Album() {
       }
     };
     fetchDataAndProcess();
-  }, []);
+  }, [album.id]);
 
   if (modifiedList.isLoading) return (
     <div style={{height: '100%', padding:'40px 18px'}}>

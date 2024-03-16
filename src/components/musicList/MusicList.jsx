@@ -14,14 +14,19 @@ export default function MusicList({songs, title, pic, trackCount}) {
   useEffect(() => {
     window.addEventListener('scroll', function() {
       var header = document.querySelector('.header');
+      var bottomflex = document.querySelector('.bottom__flex');
       var scrollPosition = window.scrollY;
     
-      if (header) {
-        if (scrollPosition > 210) {
-          header.style.backgroundColor = 'rgba(225, 90, 90, 0.9)'; // 当滚动位置大于0时，改变背景颜色为色
-          header.style.borderRadius = '0 0 5px 5px'
+      if (header && bottomflex) {
+        if (scrollPosition > 205) {
+          header.style.background = `url(${pic})`; // 当滚动位置大于0时，改变背景
+          bottomflex.style.position = 'fixed'
+          bottomflex.style.top = '49px'
+          bottomflex.style.background = 'rgb(250, 250, 250)'          
         } else {
-          header.style.backgroundColor = 'transparent'; // 否则背景透明
+          header.style.background = 'transparent'; // 否则背景透明
+          bottomflex.style.position = 'static'
+          bottomflex.style.background = 'linear-gradient(to top, rgb(250, 250, 250), rgba(255, 255, 255, 0.8))'
         }
       }
     });
@@ -34,7 +39,6 @@ export default function MusicList({songs, title, pic, trackCount}) {
   }
   function random () {
     randomPlay(songs)
-    console.log('success : ', playlist)
   }
 
   return (

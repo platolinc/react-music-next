@@ -19,3 +19,8 @@ export async function processSongs(songs) {
   return processedSongs
 }
 
+export async function getComment(id) {
+  const res = await instance.get(`/comment/music?id=${id}`)
+  return res.data
+}
+

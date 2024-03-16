@@ -1,4 +1,6 @@
 import { useRef, useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { useLocation } from 'react-router-dom';
 import { useVideoStore } from '/src/store/video.js'
 import useMode from "./use-mode"
 import useCd from './use-cd';
@@ -25,6 +27,7 @@ export default function Player() {
   // hooks
   const { modeIcon, changeMode } = useMode();
   const { cdCls, cdRef, cdImageRef } = useCd();
+  const navigate = useNavigate()
 
   // 计算
   const playIcon = useMemo(() => {
@@ -44,6 +47,7 @@ export default function Player() {
   function goBack() {
     store.setFullScreen(false)
   }
+
   function togglePlay(event) {
     if (!songReady) {
       return
@@ -51,9 +55,11 @@ export default function Player() {
     event.stopPropagation();
     store.setPlayingState(!store.playing)
   }
+
   function pause() {
     store.setPlayingState(false)
   }
+
   function prev() {
     const list = store.playlist
 
@@ -74,6 +80,7 @@ export default function Player() {
       }
     }
   }
+
   function next() {
     const list = store.playlist
 
@@ -94,26 +101,31 @@ export default function Player() {
       }
     }
   }
+
   function loop () {
     const audioEl = audioRef.current
     audioEl.currentTime = 0
     audioEl.play()
     store.setPlayingState(true)
   }
+
   function ready () {
     if (songReady) {
       return
     }
     setSongReady(true)
   }
+
   function error () {
     setSongReady(true)
   }
+
   function updataTime (e) {
     if(!progressChanging) {
       setCurrentTime(e.target.currentTime)
     }
   }
+
   function handleProgressChanging (progress) {
     setProgressChanging(true)
     setCurrentTime(currentSong.dt / 1000 * progress)
@@ -136,6 +148,10 @@ export default function Player() {
       next()
     }
   }
+  
+  function showComment (currentSong) {
+    navigate(`/discover/${currentSong.id}/comment`, { state: { currentSong } });
+  }
 
   useEffect(() => {
     if (!currentSong.id || !currentSong.aaaUrl) {
@@ -145,7 +161,6 @@ export default function Player() {
     setSongReady(false)
     const audioEl = audioRef.current
     audioEl.src = currentSong.aaaUrl
-    console.log(currentSong.aaaUrl)
     audioEl.play()
   }, [currentSong]);
 
@@ -193,6 +208,21 @@ export default function Player() {
                 </div>
               </div>
               <div className="bottom">
+                <div className="extra">
+                  <div className="extra__favour">
+                    <img src="/src/components/player/不喜欢.png" />
+                  </div>
+                  <div className="extra__comment">
+                    <img src="/src/components/player/线条评论.png" onClick={() => showComment(currentSong)}/>
+                  </div>
+                  <div className="extra__store">
+                    <img src="/src/components/musicList/收藏.png" />
+                  </div>
+                  <div className="extra__list">
+                    <img src="/src/assets/fonts/菜单.png" />
+                  </div>
+                
+                </div>
                 <div className="progress-wrapper">
                   <span className="time time-l">{formatTime(currentTime)}</span>
                   <div className="progress-bar-wrapper">

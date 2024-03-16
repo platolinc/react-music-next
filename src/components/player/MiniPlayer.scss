@@ -99,9 +99,6 @@
         &.playing {
           animation: rotate 10s linear infinite;
         }
-        &.pause {
-          animation-play-state: paused;
-        }
       }
     }
   }

@@ -1,0 +1,177 @@
+.comment {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  z-index: 9999;
+  overflow-y: scroll;
+
+  .header {
+    display: flex;
+    position: fixed;
+    z-index: 11;
+    align-items: center;
+    height: 50px;
+    background: white;
+
+    .back {
+      font-size: 32px;
+      margin-left: 13px;
+    }
+
+    .title {
+      flex: 1;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .share {
+      height: 32px;
+      margin-right: 13px;
+      filter: brightness(.01)
+    }
+  }
+
+  .middle {
+    height: 63px;
+    margin: 0;
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    border-bottom: 10px solid rgb(235, 235, 235);
+
+
+    .cd-wrapper {
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
+      padding: 0 10px 0 14px;
+      img {
+        border-radius: 50%;
+      }
+    }
+    .slider-wrapper {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    
+      .name {
+        // flex: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      .desc {
+        flex: 0 0 40%;
+        padding-left: 4px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        color: rgb(104, 104, 104);
+      }
+    }
+  }
+  .comments {
+    position: relative;
+    &__top {
+      font-size: 15px;
+      font-weight: 600;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      background:white;
+      width: 100%;
+      padding: 0 13px;
+      box-sizing: border-box;
+
+      .text {
+        flex: 1; 
+        text-align: end;
+      }
+      .text1 {
+        padding-left: 19px;
+        font-weight: 400;
+        color: rgb(154, 154, 154);
+      }
+    }
+    .commentslist {
+      position: absolute;
+      top: 43px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    
+      &__item {
+        display: flex; /* 设置为 flex 布局 */
+        padding: 10px 0;
+        
+        .left {
+          width: 65px;
+          text-align: center;
+          
+          .avatar {
+            width: 40px;
+            border-radius: 50%;
+          }
+        }
+    
+        .right {
+          flex: 1; /* 让 .right 填充剩余空间 */
+          border-bottom: 1px solid rgb(224, 224, 224);
+          margin-right: 13px;
+
+          .top {
+            display: flex;
+            align-items: start;
+            height: 24px;
+            padding: 0;
+            font-weight: 300;
+
+            .name {
+              font-size: 15px;                          
+              font-weight: 600;
+              color: rgb(95, 95, 95);
+            }
+            .vip {
+              flex: 1;
+              height: 23px;
+              padding-left: 5px;
+              display: flex;
+              align-items: center;
+
+              .vipIcon {
+                width: 48px;
+              }
+            }
+            .like {
+              height: 23px;
+              padding-left: 5px;
+              display: flex;
+              align-items: center;
+
+              .likeIcon {
+                width: 28px;
+                filter: brightness(.1);
+              }
+            }
+          }
+          .content {
+            font-size: 15px;
+            padding: 16px 0;
+          }
+        }
+        
+        /* 新增的代码 */
+        justify-content: space-between; /* 左右对齐 */
+      }
+    }
+  }
+}

@@ -87,7 +87,7 @@
         width: 100%;
         height: 0;
         padding-top: 80%;
-        overflow: hidden;
+        overflow: hidden; // 防止由于cd转动导致正方形边角超出屏幕造成cd可拖动
         .cd-wrapper {
           position: absolute;
           left: 10%;
@@ -122,12 +122,51 @@
       bottom: 35px;
       width: 100%;
 
+      .extra {
+        display: flex;
+        text-align: center;
+        align-items: center; 
+        margin: 0 30px;
+        height: 43px;
+        
+        &__favour {
+          flex: 1;
+          img {
+            width: 36px;
+            height: 36px;
+          }
+          
+        }
+        &__comment {
+          flex: 1;
+          img {
+            width: 33px;
+            height: 33px;
+          }
+        }
+        &__store {
+          flex: 1;
+          img {
+            width: 27px;
+            height: 27px;
+          }
+        }
+        &__list {
+          flex: 1;
+          img {
+            width: 28px;
+            height: 28px;
+          }
+        }
+
+      }
+
       .progress-wrapper {
         display: flex;
         align-items: center;
         width: 90%;
         margin: 0px auto;
-        padding: 10px 0;
+        padding: 0 0 10px 0;
         .time {
           color: #fff;
           font-size: 12px;
