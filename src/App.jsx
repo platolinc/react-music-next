@@ -1,13 +1,13 @@
 import { HashRouter, Route, Routes, Navigate } from 'react-router-dom';
-import Discover from '/src/views/Discover';
-import Album from '/src/views/Album.jsx'
+import Discover from '@/views/Discover';
+import Album from '@/views/Album.jsx'
 import Comment from './components/player/Comment.jsx';
-import Podcast from '/src/views/Podcast';
-import My from '/src/views/My';
-import Follow from '/src/views/Follow';
-import Community from '/src/views/Community';
-import Docker from "./components/docker/Docker.jsx"
-import Player from '/src/components/player/Player.jsx';
+import Podcast from '@/views/Podcast';
+import My from '@/views/My';
+import Follow from '@/views/Follow';
+import Community from '@/views/Community';
+import Docker from "@/components/docker/Docker.jsx"
+import Player from '@/components/player/Player.jsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient();

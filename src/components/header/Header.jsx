@@ -3,6 +3,14 @@ import { getBanner } from "../../api/getDiscovery";
 import "./Header.scss";
 import { useQuery } from "react-query";
 
+import p1 from "@/assets/fonts/菜单.png"
+import p2 from "@/assets/fonts/搜索.png"
+import p3 from "@/assets/fonts/免费.png"
+import p4 from "@/assets/fonts/听歌识曲.png"
+
+
+
+
 export default function Header() {
   const { data, isLoading, error } = useQuery('bannerData', getBanner);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -53,14 +61,14 @@ export default function Header() {
       <div className="header-mask"></div>
       <div className="top">
         <div className="top__left">
-          <img className="top__left__img" src="src/assets/fonts/菜单.png" alt="菜单" />
+          <img className="top__left__img" src={p1} alt="菜单" />
         </div>
         <div className="top__center">
-          <img className="top__center__img" src="src/assets/fonts/搜索.png" alt="搜索" />
+          <img className="top__center__img" src={p2} alt="搜索" />
         </div>            
         <div className="top__right">
-          <img className="top__right__img1" src="src/assets/fonts/免费.png" alt="免费" />
-          <img className="top__right__img" src="src/assets/fonts/听歌识曲.png" alt="听歌识曲" />
+          <img className="top__right__img1" src={p3} alt="免费" />
+          <img className="top__right__img" src={p4} alt="听歌识曲" />
         </div>
       </div>
       <div className="banner">

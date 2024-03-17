@@ -10,6 +10,8 @@ import { PLAY_MODE } from '/src/assets/js/constant'
 import MiniPlayer from './MiniPlayer'
 import { CSSTransition } from 'react-transition-group';
 import "./Player.scss"
+import DislikePng from '@/components/player/不喜欢.png'
+import CommentPng from "@/components/player/线条评论.png"
 
 export default function Player() {
 
@@ -210,10 +212,10 @@ export default function Player() {
               <div className="bottom">
                 <div className="extra">
                   <div className="extra__favour">
-                    <img src="/src/components/player/不喜欢.png" />
+                    <img src={DislikePng} />
                   </div>
                   <div className="extra__comment">
-                    <img src="/src/components/player/线条评论.png" onClick={() => showComment(currentSong)}/>
+                    <img src={CommentPng} onClick={() => showComment(currentSong)}/>
                   </div>
                   <div className="extra__store">
                     <img src="/src/components/musicList/收藏.png" />
