@@ -31,6 +31,7 @@ export default function Header() {
           headerMask.style.background = 'transparent'
         } else {
           top.style.backgroundColor = 'transparent'; // 否则背景透明
+          top__center.style.background = 'linear-gradient(to right, #bed4ff, #f7cdff)'
           headerMask.style.backgroundImage = 'linear-gradient(to right, #ced5ff, #ffe1f3)'
         }
       }

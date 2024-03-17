@@ -18,7 +18,7 @@ export default function Comment() {
       if (commentsTop) {
         if (scrollPosition > 74) {
           commentsTop.style.position = 'fixed';
-          commentsTop.style.top = '49px';
+          commentsTop.style.top = '48px';
           commentsTop.style.zIndex = '500';
         } else {
           commentsTop.style.position = 'static';
