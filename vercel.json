@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://netease-cloud-music-api-pi-three-81.vercel.app/:path*"
+    }
+  ]
+}

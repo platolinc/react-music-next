@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 const instance = axios.create({
-  baseURL: 'https://vercel.com/lchs-projects-f6561f32/netease-cloud-music-api',
+  baseURL: '/api',
   timeout: 10000
 })
 
