@@ -1,11 +1,11 @@
 import { useRef, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useVideoStore } from '/src/store/video.js'
+import { useVideoStore } from '@/store/video.js'
 import useMode from "./use-mode"
 import useCd from './use-cd';
-import { formatTime } from '/src/assets/js/util.js'
+import { formatTime } from '@/assets/js/util.js'
 import ProgressBar from './ProgressBar';
-import { PLAY_MODE } from '/src/assets/js/constant'
+import { PLAY_MODE } from '@/assets/js/constant'
 import MiniPlayer from './MiniPlayer'
 import { CSSTransition } from 'react-transition-group';
 import "./Player.scss"

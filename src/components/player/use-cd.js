@@ -1,4 +1,4 @@
-import { useVideoStore } from '/src/store/video.js'
+import { useVideoStore } from '@/store/video.js'
 import { useRef, useEffect, useState } from 'react';
 
 export default function useCd() {

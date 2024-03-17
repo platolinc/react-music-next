@@ -1,7 +1,6 @@
 import {create} from 'zustand'
-import { PLAY_MODE } from '/src/assets/js/constant'
-import { shuffle } from '/src/assets/js/util'
-// import { load } from '/src/assets/js/array-store'
+import { PLAY_MODE } from '@/assets/js/constant'
+import { shuffle } from '@/assets/js/util'
 
 export const useVideoStore = create((set) => ({
   sequenceList: [],

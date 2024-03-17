@@ -1,6 +1,6 @@
 import SongList from "../songList/SongList"
 import { useNavigate } from 'react-router-dom';
-import { useVideoStore } from '/src/store/video.js'
+import { useVideoStore } from '@/store/video.js'
 import { useEffect } from "react";
 import "./MusicList.scss"
 

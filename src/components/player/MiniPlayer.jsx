@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useVideoStore } from '/src/store/video.js'
+import { useVideoStore } from '@/store/video.js'
 import useCd from './use-cd';
 import { CSSTransition } from 'react-transition-group';
 import './MiniPlayer.scss'

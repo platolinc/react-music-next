@@ -1,6 +1,6 @@
-import { useVideoStore } from '/src/store/video.js'
+import { useVideoStore } from '@/store/video.js'
 import { useMemo } from 'react'
-import { PLAY_MODE } from '/src/assets/js/constant'
+import { PLAY_MODE } from '@/assets/js/constant'
 
 import p1 from '@/components/player/列表循环.png'
 import p2 from '@/components/player/随机播放.png'
