@@ -4,6 +4,13 @@ import { useVideoStore } from '/src/store/video.js'
 import { useEffect } from "react";
 import "./MusicList.scss"
 
+import sp from "@/assets/fonts/搜索.png"
+import p1 from "@/components/musicList/转发.png"
+import p2 from "@/components/musicList/评论.png"
+import p3 from "@/components/musicList/收藏.png"
+import p4 from "@/components/musicList/开始.png"
+import p5 from "@/assets/fonts/菜单.png"
+
 export default function MusicList({songs, title, pic, trackCount}) {
   const navigate = useNavigate();
   const handleGoBack = () => {
@@ -51,7 +58,7 @@ export default function MusicList({songs, title, pic, trackCount}) {
           {'<'} 
         </div>
         <h1 className="title">歌单</h1>
-        <img className="searchimg" src="/src/assets/fonts/搜索.png"></img>
+        <img className="searchimg" src={sp}></img>
       </div>
       <div className="middle">
         <div className="flex1">
@@ -62,15 +69,15 @@ export default function MusicList({songs, title, pic, trackCount}) {
         </div>
         <div className="flex2">
           <div className="border">
-            <img className="icon" src="/src/components/musicList/转发.png" />
+            <img className="icon" src={p1} />
             <p>3598</p>
           </div>
           <div className="border">
-            <img className="icon" src="/src/components/musicList/评论.png" />
+            <img className="icon" src={p2} />
             <p>398</p>
           </div>
           <div className="border">
-            <img className="icon" src="/src/components/musicList/收藏.png" />
+            <img className="icon" src={p3} />
             <p>598</p>
           </div>
         </div>
@@ -79,10 +86,10 @@ export default function MusicList({songs, title, pic, trackCount}) {
       <div className="bottom">
         <div className="bottom__flex">
           <div className="playall" onClick={random}>
-            <img className="playicon" src="/src/components/musicList/开始.png"/>
+            <img className="playicon" src={p4} />
             <div className="title">随机播放({trackCount})</div>
           </div>
-          <img className="list" src="/src/assets/fonts/菜单.png" />
+          <img className="list" src={p5} />
         </div>
         <SongList 
           songs = {songs}

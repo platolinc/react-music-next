@@ -4,6 +4,9 @@ import { useQuery } from "react-query";
 import { getComment } from "../../api/getSong";
 import './Comment.scss'
 
+import dp from "@/components/player/不喜欢.png"
+import sp from "@/components/player/分享.png"
+
 export default function Comment() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -74,7 +77,7 @@ export default function Comment() {
             </div>
             {i.likedCount}
             <div className="like">
-              <img className="likeIcon" src="/src/components/player/不喜欢.png" />
+              <img className="likeIcon" src={dp} />
             </div>
           </div>
           <div className="content">
@@ -97,7 +100,7 @@ export default function Comment() {
           {'<'} 
         </div>
         <h1 className="title">评论(20)</h1>
-        <img className="share" src="/src/components/player/分享.png"></img>
+        <img className="share" src={sp} ></img>
       </div>
       <div
         className='middle'

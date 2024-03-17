@@ -5,6 +5,10 @@ import useCd from './use-cd';
 import { CSSTransition } from 'react-transition-group';
 import './MiniPlayer.scss'
 
+import stopPng from '@/components/player/暂停.png'
+import playPng from '@/components/player/开始.png'
+import listPng from "@/assets/fonts/菜单.png"
+
 export default function MiniPlayer({togglePlay}) {
   const location = useLocation()
   
@@ -24,7 +28,7 @@ export default function MiniPlayer({togglePlay}) {
   const { cdCls, cdRef, cdImageRef } = useCd();
 
   const playIcon = useMemo(() => {
-    return store.playing?  '/src/components/player/暂停.png' : '/src/components/player/开始.png';
+    return store.playing ? stopPng  : playPng
   }, [store.playing])
 
   function showNormalPlayer() {
@@ -69,7 +73,7 @@ export default function MiniPlayer({togglePlay}) {
             />
           </div>
           <div className="control">
-            <img src="/src/assets/fonts/菜单.png" className="icon-playlist" />
+            <img src={listPng} className="icon-playlist" />
           </div>
         </div>
       </CSSTransition>

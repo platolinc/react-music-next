@@ -1,6 +1,5 @@
 import { useRef, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useLocation } from 'react-router-dom';
 import { useVideoStore } from '/src/store/video.js'
 import useMode from "./use-mode"
 import useCd from './use-cd';
@@ -10,8 +9,15 @@ import { PLAY_MODE } from '/src/assets/js/constant'
 import MiniPlayer from './MiniPlayer'
 import { CSSTransition } from 'react-transition-group';
 import "./Player.scss"
-import DislikePng from '@/components/player/不喜欢.png'
-import CommentPng from "@/components/player/线条评论.png"
+
+import dislikePng from '@/components/player/不喜欢.png'
+import commentPng from "@/components/player/线条评论.png"
+import stopPng from '@/components/player/暂停.png'
+import playPng from '@/components/player/开始.png'
+import listPng from "@/assets/fonts/菜单.png"
+import storePng from "@/components/musicList/收藏.png"
+import sharePng from "@/components/player/分享.png"
+import nextPng from "@/components/player/下一首.png"
 
 export default function Player() {
 
@@ -33,7 +39,7 @@ export default function Player() {
 
   // 计算
   const playIcon = useMemo(() => {
-    return store.playing?  '/src/components/player/暂停.png' : '/src/components/player/开始.png';
+    return store.playing?  stopPng : playPng
   }, [store.playing])
 
   const disableCls = useMemo(() => {
@@ -198,7 +204,7 @@ export default function Player() {
                 </div>
                 <h1 className="title">{currentSong.name}</h1>
                 <h2 className="subtitle">{currentSong?.ar?.[0]?.name}</h2>
-                <img src="/src/components/player/分享.png" className="share" />
+                <img src={sharePng} className="share" />
               </div>
               <div className="middle">
                 <div className="middle-l">
@@ -212,16 +218,16 @@ export default function Player() {
               <div className="bottom">
                 <div className="extra">
                   <div className="extra__favour">
-                    <img src={DislikePng} />
+                    <img src={dislikePng} />
                   </div>
                   <div className="extra__comment">
-                    <img src={CommentPng} onClick={() => showComment(currentSong)}/>
+                    <img src={commentPng} onClick={() => showComment(currentSong)}/>
                   </div>
                   <div className="extra__store">
-                    <img src="/src/components/musicList/收藏.png" />
+                    <img src={storePng} />
                   </div>
                   <div className="extra__list">
-                    <img src="/src/assets/fonts/菜单.png" />
+                    <img src={listPng} />
                   </div>
                 
                 </div>
@@ -241,16 +247,16 @@ export default function Player() {
                     <img src={modeIcon} onClick={changeMode} />
                   </div>
                   <div className="operate__before">
-                    <img src="/src/components/player/下一首.png" onClick={prev} className={disableCls}/>
+                    <img src={nextPng} onClick={prev} className={disableCls}/>
                   </div>
                   <div className="operate__stop" onClick={togglePlay}>
                     <img src={playIcon} className={disableCls} />
                   </div>
                   <div className="operate__next">
-                    <img src="/src/components/player/下一首.png" onClick={next} className={disableCls}/>
+                    <img src={nextPng} onClick={next} className={disableCls}/>
                   </div>
                   <div className="operate__favour">
-                    <img src="/src/components/player/不喜欢.png" />
+                    <img src={dislikePng} />
                   </div>
                 </div>
               </div>

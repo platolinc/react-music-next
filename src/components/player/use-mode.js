@@ -2,16 +2,20 @@ import { useVideoStore } from '/src/store/video.js'
 import { useMemo } from 'react'
 import { PLAY_MODE } from '/src/assets/js/constant'
 
+import p1 from '@/components/player/列表循环.png'
+import p2 from '@/components/player/随机播放.png'
+import p3 from '@/components/player/单曲循环.png'
+
 export default function useMode() {
   const store = useVideoStore()
 
   const modeIcon = useMemo(() => {
     const playModeVal = store.playMode
     return playModeVal === PLAY_MODE.sequence
-      ? '/src/components/player/列表循环.png'
+      ? p1
       : playModeVal === PLAY_MODE.random
-        ? '/src/components/player/随机播放.png'
-        : '/src/components/player/单曲循环.png'
+        ? p2
+        : p3
   }, [store.playMode])
 
   // const modeText = useMemo(() => {
